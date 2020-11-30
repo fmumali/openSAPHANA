@@ -18,6 +18,13 @@ try {
 	console.log("[WARN]", err.message);
 }
 
+// configure SQLCC Secondary HANA for direct SFLIGHT access
+try {
+	options.hana.sqlcc = xsenv.getServices({ "xsjs.sqlcc_config": "CROSS_SCHEMA_SFLIGHT_01" });
+} catch (err) {
+	console.log("[WARN]", err.message);
+}
+
 // configure UAA
 try {
 	options = Object.assign(options, xsenv.getServices({ uaa: {tag: "xsuaa"} }));
